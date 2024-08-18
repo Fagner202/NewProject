@@ -22,4 +22,18 @@ class UserController extends Controller
         ]);
         // return 'UserController@index';
     }
+
+    public function create()
+    {
+        return view('admin.users.create');
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        User::create($request->all());
+        // dd(User::create($request->all()));
+        return redirect()->route('users.index');
+        // return 'Cadastrando o usuário';
+    }
 }
