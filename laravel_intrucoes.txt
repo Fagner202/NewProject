@@ -1,0 +1,67 @@
+
+# Como Iniciar o Projeto Laravel na Sua Máquina
+
+## 1. Clone o Repositório (Se ainda não fez):
+Se você ainda não clonou o repositório, use o comando abaixo:
+```bash
+git clone <URL_DO_REPOSITÓRIO>
+cd <NOME_DO_PROJETO>
+```
+
+## 2. Instale as Dependências:
+No diretório do projeto, execute o seguinte comando para instalar todas as dependências do Laravel:
+```bash
+composer install
+```
+
+## 3. Copie o Arquivo `.env.example`:
+O arquivo `.env` contém as configurações do ambiente. Copie o arquivo `.env.example` para `.env`:
+```bash
+cp .env.example .env
+```
+
+## 4. Gere a Chave da Aplicação:
+A chave da aplicação é usada para criptografar dados. Gere a chave com o comando abaixo:
+```bash
+php artisan key:generate
+```
+
+## 5. Configure o Banco de Dados:
+Abra o arquivo `.env` e configure as variáveis de ambiente do banco de dados (DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD) para corresponder às suas configurações no XAMPP.
+
+## 6. Migre as Tabelas para o Banco de Dados:
+Se o projeto usa banco de dados, execute as migrações para criar as tabelas:
+```bash
+php artisan migrate
+```
+
+## 7. Inicie o Servidor Laravel:
+Você pode iniciar o servidor embutido do Laravel com o comando abaixo:
+```bash
+php artisan serve
+```
+Isso iniciará o servidor e você poderá acessar o projeto em `http://localhost:8000`.
+
+## 8. Opcional: Configurar o XAMPP para Rodar o Projeto (Usando Apache):
+Se quiser rodar o projeto diretamente pelo XAMPP, siga esses passos:
+
+- Coloque o diretório do projeto dentro da pasta `htdocs` do XAMPP.
+- Abra o arquivo `httpd-vhosts.conf`, normalmente localizado em `C:\xampp\apache\conf\extra\httpd-vhosts.conf`.
+- Adicione a configuração abaixo:
+  ```apache
+  <VirtualHost *:80>
+      DocumentRoot "C:/xampp/htdocs/NOME_DO_PROJETO/public"
+      ServerName NOME_DO_PROJETO.local
+      <Directory "C:/xampp/htdocs/NOME_DO_PROJETO">
+          AllowOverride All
+          Require all granted
+      </Directory>
+  </VirtualHost>
+  ```
+- Adicione o domínio no arquivo `hosts` (C:\Windows\System32\drivers\etc\hosts):
+  ```
+  127.0.0.1  NOME_DO_PROJETO.local
+  ```
+- Reinicie o Apache pelo XAMPP e acesse o projeto através de `http://NOME_DO_PROJETO.local`.
+
+Agora, seu projeto Laravel deve estar rodando na sua máquina!
