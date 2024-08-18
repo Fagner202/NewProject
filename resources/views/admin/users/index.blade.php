@@ -6,6 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Olá {{ $user->name }}</h1>
+    <h1>Usuários</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($users as $cval)
+                <tr>
+                    <td>{{ $cval->name }}</td>
+                    <td>{{ $cval->email }}</td>
+                    <td>-</td>
+                </tr>
+            @empty
+                <td colspan="100">Nenhem usuário no banco</td>
+            @endforelse
+        </tbody>
+    </table>
+
+    {{ $users->links() }}
 </body>
 </html>

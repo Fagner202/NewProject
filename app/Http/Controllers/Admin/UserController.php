@@ -12,10 +12,13 @@ class UserController extends Controller
     
     public function index()
     {
-        $user = User::first();
+        // $users = User::all();
+        $users = User::paginate(10);
+
+        // dd($users);
 
         return view('admin.users.index', [
-            'user' => $user
+            'users' => $users
         ]);
         // return 'UserController@index';
     }
