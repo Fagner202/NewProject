@@ -9,6 +9,10 @@
         {{ session('success') }}
     @endif
 
+    {{ session('message') }}
+
+    <br>
+
     <a href="{{ route('users.create') }}">Novo</a>
 
     <table>
@@ -24,7 +28,9 @@
                 <tr>
                     <td>{{ $cval->name }}</td>
                     <td>{{ $cval->email }}</td>
-                    <td>-</td>
+                    <td>
+                        <a href="{{ route('users.edit', $cval->id) }}">Edit</a>
+                    </td>
                 </tr>
             @empty
                 <td colspan="100">Nenhem usuário no banco</td>
