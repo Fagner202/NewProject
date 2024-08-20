@@ -5,15 +5,13 @@
 
     <h1>Usuários</h1>
 
-    @if (session()->has('success'))
-        {{ session('success') }}
-    @endif
-
     {{ session('message') }}
 
     <br>
 
     <a href="{{ route('users.create') }}">Novo</a>
+
+    <x-alert/>
 
     <table>
         <thead>
