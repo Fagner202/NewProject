@@ -19,7 +19,7 @@
         @method('PUT')
         <input type="text" name="name" placeholder="Nome" value="{{ $user->name }}">
         <input type="text" name="email" placeholder="Email"  value="{{ $user->email }}">
-        {{-- <input type="text" name="password" placeholder="Senha"> --}}
+        <input type="text" name="password" placeholder="Senha">
         <button type="submit">Enviar</button>
     </form>
 @endsection
