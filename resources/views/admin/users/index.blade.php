@@ -28,6 +28,7 @@
                     <td>{{ $cval->email }}</td>
                     <td>
                         <a href="{{ route('users.edit', $cval->id) }}">Edit</a>
+                        <a href="{{ route('users.show', $cval->id) }}">Detalhes</a>
                     </td>
                 </tr>
             @empty
