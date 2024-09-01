@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\CheckIfsAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
