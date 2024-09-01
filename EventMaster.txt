@@ -1,0 +1,45 @@
+Sistema de Gerenciamento de Eventos
+
+Funcionalidades Principais:
+
+Cadastro e Login de Usuários
+
+Usuários podem se registrar e fazer login.
+Implementar roles e permissões (ex: admin, organizador, participante).
+Gerenciamento de Eventos
+
+CRUD para eventos (criar, ler, atualizar, deletar).
+Eventos podem ter detalhes como nome, data, localização, descrição e imagem.
+Inscrições e Participantes
+
+Usuários podem se inscrever em eventos.
+Lista de participantes para cada evento.
+Possibilidade de cancelar a inscrição.
+Administração de Eventos
+
+Admin pode gerenciar todos os eventos e usuários.
+Admin pode adicionar/editar eventos e visualizar estatísticas de inscrições.
+Sistema de Notificações
+
+Enviar e-mails de confirmação de inscrição.
+Notificar participantes sobre mudanças importantes no evento.
+Calendário de Eventos
+
+Exibir eventos em um calendário interativo.
+Filtragem por data, localização ou categoria.
+Feedback e Avaliações
+
+Participantes podem deixar feedback e avaliar eventos.
+Exibir média de avaliações para cada evento.
+Recursos Adicionais:
+
+Busca e Filtros Avançados: Permitir aos usuários buscar eventos por palavras-chave, categorias, data, etc.
+Integração com APIs: Como Google Maps para localização ou APIs de pagamento para eventos pagos.
+Design Responsivo: Utilizar frameworks de front-end como Bootstrap ou Tailwind CSS para garantir que o site seja acessível em dispositivos móveis.
+Tecnologias e Conceitos a Aplicar:
+
+Laravel Eloquent: Para gerenciamento de banco de dados e relações entre modelos.
+Autenticação e Autorização: Para controle de acesso.
+Middleware: Para proteger rotas e controlar o acesso.
+Livewire ou Inertia.js: Para interatividade e atualizações em tempo real sem recarregar a página.
+Testes Automatizados: Para garantir a qualidade do código.
