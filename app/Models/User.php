@@ -50,4 +50,10 @@ class User extends Authenticatable
     {
         return in_array($this->email, config('custom.admins'));
     }
+
+    // Define o relacionamento muitos-para-muitos com eventos
+    public function eventos()
+    {
+        return $this->belongsToMany(Evento::class, 'evento_usuario');
+    }
 }
