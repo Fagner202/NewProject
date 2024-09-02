@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Evento;
 class EventoController extends Controller
 {
     /**
@@ -11,8 +11,14 @@ class EventoController extends Controller
      */
     public function index()
     {
-        // dd('Eventos');
-        return view('eventos.index');
+        // dd(auth()->user());
+        
+        $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
+        // dd($eventos);
+
+        return view('eventos.index', [
+            'items' => $eventos
+        ]);
     }
 
     /**
