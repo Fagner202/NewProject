@@ -12,7 +12,8 @@ class EventoController extends Controller
     public function index()
     {
         // dd(auth()->user());
-        
+        // dd(auth()->user());
+        // dd(auth()->user()->id);
         $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
         // dd($eventos);
 
