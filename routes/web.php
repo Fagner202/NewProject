@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminMiddleware;
@@ -18,7 +19,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 });
 
 // Route::get('\events', [\App\Http\Controllers\EventController::class, 'index'])->name('events.index');
-Route::get('/dashboard', [EventoController::class, 'index'])->name('events.index');
+// Route::get('/dashboard', [EventoController::class, 'index'])->name('events.index');
+route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/', function () {
     return view('welcome');
