@@ -22,6 +22,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 // Route::get('/dashboard', [EventoController::class, 'index'])->name('events.index');
 route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Route::get('/', function () {
+    // return view('teste');
+// });
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');

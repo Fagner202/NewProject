@@ -16,6 +16,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // dd(Auth::guard('web')->user());
         return view('auth.login');
     }
 
