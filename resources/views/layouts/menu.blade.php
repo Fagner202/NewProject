@@ -59,7 +59,7 @@
         </style>
     </head>
     <body>
-        <div class="navbar navbar-expand-lg navbar-danger bg-danger">
+        <div class="navbar navbar-expand-lg navbar-primary bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">eventos</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,15 +76,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contato</a>
                         </li>
-                        <li class="nav-item">
-                            <button id="theme-toggle" class="btn btn-outline-light ms-2">
-                                <i class="fa-solid fa-moon"></i> <!-- Ícone de lua para modo escuro -->
-                            </button>
-                        </li>
                     </ul>
+                    <!-- Container para o ícone, alinhado à direita -->
+                    <div class="d-flex ms-auto">
+                        <button id="theme-toggle" class="btn btn-outline-light ms-2">
+                            <i class="fa-solid fa-moon"></i> <!-- Ícone de lua para modo escuro -->
+                        </button>
+
+                        <button id="" class="btn btn-outline-light ms-2">
+                            <i class="fa-solid fa-ice-cream"></i> <!-- Ícone de lua para modo escuro -->
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="content">
             <!-- Aqui é onde o conteúdo passado para o componente será exibido -->
@@ -107,7 +113,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
                 const themeToggleButton = document.getElementById('theme-toggle');
-                const currentTheme = localStorage.getItem('theme') || 'light';
+                let currentTheme = localStorage.getItem('theme') || 'light';
 
                 // Aplica o tema atual
                 document.body.classList.add(`${currentTheme}-mode`);
@@ -116,13 +122,21 @@
 
                 // Evento de clique no botão para alternar o tema
                 themeToggleButton.addEventListener('click', () => {
-                    let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    // Remove o tema atual
                     document.body.classList.remove(`${currentTheme}-mode`);
-                    document.body.classList.add(`${newTheme}-mode`);
-                    themeToggleButton.innerHTML = newTheme === 'light' ? 
+                    
+                    // Alterna o tema
+                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    // Adiciona o novo tema
+                    document.body.classList.add(`${currentTheme}-mode`);
+                    
+                    // Atualiza o ícone do botão
+                    themeToggleButton.innerHTML = currentTheme === 'light' ? 
                         '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-
-                    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
+                    
+                    // Salva o novo tema no localStorage
+                    localStorage.setItem('theme', currentTheme);
                 });
             });
         </script>
