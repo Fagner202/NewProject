@@ -42,6 +42,25 @@
                 color: #ffffff;
             }
 
+            /* Cartões */
+            .card-theme {
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            /* Estilo para o modo claro */
+            body.light-mode .card-theme {
+                background-color: #ffffff;
+                color: #000000;
+                border: 1px solid #dee2e6;
+            }
+
+            /* Estilo para o modo escuro */
+            body.dark-mode .card-theme {
+                background-color: #333333;
+                color: #ffffff;
+                border: 1px solid #444444;
+            }
+
             /* Adapte as classes do Bootstrap conforme necessário */
             .navbar-light-mode {
                 background-color: #f8f9fa;
@@ -67,7 +86,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('eventos.index') }}">Eventos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Usúario</a>
@@ -118,30 +137,29 @@
                 const themeToggleButton = document.getElementById('theme-toggle');
                 let currentTheme = localStorage.getItem('theme') || 'light';
 
-                // Aplica o tema atual
+                // Aplica o tema atual ao body
                 document.body.classList.add(`${currentTheme}-mode`);
+                
+                // Altera o ícone conforme o tema atual
                 themeToggleButton.innerHTML = currentTheme === 'light' ? 
-                    '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>'; // Alterna ícone baseado no tema
+                    '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
 
-                // Evento de clique no botão para alternar o tema
+                // Alternar tema ao clicar no botão
                 themeToggleButton.addEventListener('click', () => {
-                    // Remove o tema atual
                     document.body.classList.remove(`${currentTheme}-mode`);
                     
-                    // Alterna o tema
+                    // Alterna entre claro e escuro
                     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
                     
-                    // Adiciona o novo tema
                     document.body.classList.add(`${currentTheme}-mode`);
-                    
-                    // Atualiza o ícone do botão
                     themeToggleButton.innerHTML = currentTheme === 'light' ? 
                         '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
                     
-                    // Salva o novo tema no localStorage
+                    // Salva o tema no localStorage
                     localStorage.setItem('theme', currentTheme);
                 });
             });
+
         </script>
     </body>
 </html>

@@ -22,6 +22,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
 Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
 });
 
 

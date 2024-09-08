@@ -11,7 +11,7 @@ class EventoUsuarioSeeder extends Seeder
     public function run()
     {
         // Defina o ID do usuário
-        $usuarioId = 501;
+        $usuarioId = 1;
 
         // Crie 5 registros na tabela evento_usuario
         foreach (range(1, 5) as $index) {

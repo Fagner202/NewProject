@@ -12,13 +12,11 @@ class EventoController extends Controller
     public function index()
     {
         // dd(auth()->user());
-        // dd(auth()->user());
-        // dd(auth()->user()->id);
         $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
         // dd($eventos);
 
         return view('eventos.index', [
-            'items' => $eventos
+            'events' => $eventos
         ]);
     }
 
