@@ -29,7 +29,7 @@
                             </p>
                             <!-- Botão de exclusão com ícone de lixeira -->
                             <div class="text-end">
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger" id="sendAjax" onclick="myFunction('{{ $event->id }}')">
                                     <i class="fas fa-trash-alt"></i> Excluir
                                 </button>
                             </div>
@@ -40,3 +40,27 @@
         </div>
     </div>
 </x-menu>
+
+<script>
+    function myFunction(id) {
+        $(document).ready(function() {
+            console.log(id);
+            $.ajax({
+                url: "{{ route('ajax.request') }}", // Rota definida no Laravel
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}", // Laravel CSRF token
+                    input1: "valor1",
+                    input2: "valor2"
+                },
+                success: function(response) {
+                    console.log(response.message); // Exibe a resposta
+                },
+                error: function(error) {
+                    console.log("Erro na requisição AJAX", error);
+                }
+            });
+        });  
+    }
+
+</script>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,13 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
     Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
     Route::post('/eventos/store', [EventoController::class, 'store'])->name('eventos.store');
+
+    Route::post('/ajax/request-handler', [AjaxController::class, 'handle'])->name('ajax.handler');
+    // Route::post('/ajax/request', [AjaxController::class, 'deleteEvento'])->name('ajax.request');
+    // Route::post('/ajax/request', function () {
+    //     // dd(request()->all());
+    //     return response()->json(request()->all());
+    // })->name('ajax.request');
 });
 
 
