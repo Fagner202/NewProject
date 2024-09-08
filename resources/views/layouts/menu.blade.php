@@ -82,8 +82,12 @@
                             <i class="fa-solid fa-moon"></i> <!-- Ícone de lua para modo escuro -->
                         </button>
 
-                        <button id="" class="btn btn-outline-light ms-2">
-                            <i class="fa-solid fa-ice-cream"></i> <!-- Ícone de lua para modo escuro -->
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <button class="btn btn-outline-light ms-2" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fa-solid fa-right-from-bracket"></i> Sair
                         </button>
                     </div>
                 </div>
