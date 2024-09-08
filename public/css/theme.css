@@ -52,3 +52,29 @@ body.dark-mode .card-theme {
 .content {
     flex: 1;
 }
+
+/* Modo claro */
+body.light-mode .form-control, 
+body.light-mode .form-select {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #dee2e6;
+}
+
+body.light-mode .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Modo escuro */
+body.dark-mode .form-control, 
+body.dark-mode .form-select {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #444444;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

@@ -1,5 +1,14 @@
 <x-menu>
     <div class="container mt-4">
+        <!-- Botão para adicionar novo evento -->
+        <div class="row mb-4">
+            <div class="col-md-12 text-end">
+                <a href="{{ route('eventos.create') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Adicionar Evento
+                </a>
+            </div>
+        </div>
+
         <div class="row">
             @foreach($events as $event)
                 <div class="col-md-4 mb-4">
@@ -24,7 +33,6 @@
                                     <i class="fas fa-trash-alt"></i> Excluir
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -32,4 +32,10 @@ Class Evento extends Authenticatable
 
         return $eventos; // Não use `response()->json()` no modelo; faça isso no controlador
     }
+
+    public function getAllEventos()
+    {
+        $eventos = Evento::all();
+        return $eventos;
+    }
 }

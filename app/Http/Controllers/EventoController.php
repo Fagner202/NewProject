@@ -12,9 +12,8 @@ class EventoController extends Controller
     public function index()
     {
         // dd(auth()->user());
-        $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
-        // dd($eventos);
-
+        // $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
+        $eventos = Evento::all();
         return view('eventos.index', [
             'events' => $eventos
         ]);
@@ -25,7 +24,8 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
+        // dd(auth()->user());
+        return view('eventos.create');
     }
 
     /**
@@ -33,7 +33,18 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $event = new Evento();
+        $event->nome = $request->nome;
+        $event->descricao = $request->descricao;
+        $event->data = $request->data;
+        $event->hora_inicio = $request->hora_inicio;
+        $event->hora_fim = $request->hora_fim;
+        $event->localizacao = $request->localizacao;
+        $event->vagas = $request->vagas;
+        $event->ativo = $request->ativo;
+        $event->save();
+        return redirect()->route('eventos.index');
     }
 
     /**

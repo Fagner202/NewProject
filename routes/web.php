@@ -24,6 +24,8 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
+    Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
+    Route::post('/eventos/store', [EventoController::class, 'store'])->name('eventos.store');
 });
 
 
