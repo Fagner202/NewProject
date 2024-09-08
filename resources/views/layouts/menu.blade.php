@@ -19,62 +19,10 @@
 
         <!-- Custom Styles -->
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
 
         <style>
-            html, body {
-                height: 100%;
-                margin: 0;
-            }
-
-            body {
-                display: flex;
-                flex-direction: column;
-                transition: background-color 0.3s, color 0.3s;
-            }
-
-            body.light-mode {
-                background-color: #ffffff;
-                color: #000000;
-            }
-
-            body.dark-mode {
-                background-color: #121212;
-                color: #ffffff;
-            }
-
-            /* Cartões */
-            .card-theme {
-                transition: background-color 0.3s, color 0.3s;
-            }
-
-            /* Estilo para o modo claro */
-            body.light-mode .card-theme {
-                background-color: #ffffff;
-                color: #000000;
-                border: 1px solid #dee2e6;
-            }
-
-            /* Estilo para o modo escuro */
-            body.dark-mode .card-theme {
-                background-color: #333333;
-                color: #ffffff;
-                border: 1px solid #444444;
-            }
-
-            /* Adapte as classes do Bootstrap conforme necessário */
-            .navbar-light-mode {
-                background-color: #f8f9fa;
-                color: #000000;
-            }
-
-            .navbar-dark-mode {
-                background-color: #343a40;
-                color: #ffffff;
-            }
-
-            .content {
-                flex: 1;
-            }
+            
         </style>
     </head>
     <body>
@@ -131,35 +79,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                const themeToggleButton = document.getElementById('theme-toggle');
-                let currentTheme = localStorage.getItem('theme') || 'light';
-
-                // Aplica o tema atual ao body
-                document.body.classList.add(`${currentTheme}-mode`);
-                
-                // Altera o ícone conforme o tema atual
-                themeToggleButton.innerHTML = currentTheme === 'light' ? 
-                    '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-
-                // Alternar tema ao clicar no botão
-                themeToggleButton.addEventListener('click', () => {
-                    document.body.classList.remove(`${currentTheme}-mode`);
-                    
-                    // Alterna entre claro e escuro
-                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    document.body.classList.add(`${currentTheme}-mode`);
-                    themeToggleButton.innerHTML = currentTheme === 'light' ? 
-                        '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-                    
-                    // Salva o tema no localStorage
-                    localStorage.setItem('theme', currentTheme);
-                });
-            });
-
-        </script>
+        <!-- Custom JS (sem Vite) -->
+        <script src="{{ asset('js/theme.js') }}"></script>
     </body>
 </html>

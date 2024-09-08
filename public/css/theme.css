@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Cartões */
+.card-theme {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo para o modo claro */
+body.light-mode .card-theme {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #dee2e6;
+}
+
+/* Estilo para o modo escuro */
+body.dark-mode .card-theme {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+/* Adapte as classes do Bootstrap conforme necessário */
+.navbar-light-mode {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.navbar-dark-mode {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.content {
+    flex: 1;
+}
