@@ -1,0 +1,127 @@
+
+## Como configurar um projeto Laravel no Docker com PHP e MySQL
+
+### Passos para configurar o projeto Laravel no Docker com MySQL e resolver problemas de dependências
+
+#### 1. Criar a estrutura de pastas e arquivos no projeto Laravel:
+
+1.1 No terminal, navegue até a pasta raiz do seu projeto Laravel.
+1.2 Crie a pasta `docker/nginx`:
+
+```bash
+mkdir -p docker/nginx
+```
+
+1.3 Dentro da pasta `docker/nginx`, crie o arquivo `nginx.conf`:
+
+```bash
+touch docker/nginx/nginx.conf
+```
+
+1.4 Abra o arquivo `nginx.conf` e adicione o seguinte conteúdo:
+
+```nginx
+server {
+    listen 80;
+    index index.php index.html;
+    root /var/www/html/public;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass app:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+#### 2. Configurar o Dockerfile para instalar o PHP e suas dependências:
+
+2.1 Na raiz do projeto, crie um arquivo chamado `Dockerfile` com o seguinte conteúdo:
+
+```Dockerfile
+FROM php:8.2-fpm
+
+RUN apt-get update && apt-get install -y     libzip-dev zip unzip git     && docker-php-ext-install zip     && docker-php-ext-enable zip
+```
+
+2.2 Certifique-se de que o arquivo `docker-compose.yml` contenha a seguinte configuração para o serviço `app`:
+
+```yaml
+app:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  container_name: laravel_app
+  working_dir: /var/www/html
+  volumes:
+    - ./:/var/www/html
+  networks:
+    - laravel
+```
+
+#### 3. Build e configuração dos containers Docker:
+
+3.1 Após adicionar os arquivos de configuração, execute os comandos:
+
+```bash
+docker-compose down
+docker-compose build
+docker-compose up -d
+```
+
+Isso irá construir a imagem Docker e subir o ambiente Laravel.
+
+#### 4. Verificar se o PHP e a extensão ZIP estão corretamente instalados:
+
+4.1 Entre no container do PHP:
+
+```bash
+docker-compose exec app bash
+```
+
+4.2 Dentro do container, verifique se a extensão ZIP está instalada:
+
+```bash
+php -m | grep zip
+```
+
+#### 5. Solucionando problemas com Composer e dependências:
+
+5.1 Instale o Composer dentro do container, se ainda não estiver instalado:
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
+
+5.2 Instale as dependências do Laravel:
+
+```bash
+composer install
+```
+
+5.3 Gere a chave da aplicação:
+
+```bash
+php artisan key:generate
+```
+
+#### 6. Finalizando:
+
+6.1 Após realizar todas as etapas, reinicie os containers:
+
+```bash
+docker-compose down
+docker-compose up -d
+```
+
+Isso deve garantir que o projeto Laravel esteja funcionando corretamente com o Docker e MySQL, sem erros relacionados ao Composer, Git ou extensões do PHP.

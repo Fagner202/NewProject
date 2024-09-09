@@ -27,6 +27,8 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
     Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
     Route::post('/eventos/store', [EventoController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{id}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
+    Route::put('/eventos/{id}', [EventoController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
 
     // Route::post('/ajax/request-handler', [AjaxController::class, 'handle'])->name('ajax.handler');
