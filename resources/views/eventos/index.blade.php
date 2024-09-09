@@ -42,25 +42,28 @@
 </x-menu>
 
 <script>
-    function myFunction(id) {
-        $(document).ready(function() {
-            console.log(id);
-            $.ajax({
-                url: "{{ route('ajax.request') }}", // Rota definida no Laravel
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}", // Laravel CSRF token
-                    input1: "valor1",
-                    input2: "valor2"
-                },
-                success: function(response) {
-                    console.log(response.message); // Exibe a resposta
-                },
-                error: function(error) {
-                    console.log("Erro na requisição AJAX", error);
+    function myFunction(eventId) {
+        if (confirm('Tem certeza de que deseja excluir este evento?')) {
+            fetch(`/eventos/${eventId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
                 }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Evento excluído com sucesso!');
+                    location.reload(); // Recarrega a página para refletir a exclusão
+                } else {
+                    alert('Ocorreu um erro ao tentar excluir o evento.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao tentar excluir o evento.');
             });
-        });  
+        }
     }
-
 </script>
