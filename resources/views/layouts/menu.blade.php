@@ -1,103 +1,154 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Vertical com Ícones - Roxo</title>
+    
+    <!-- Link do CSS do Bootstrap 5.3.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Link para o Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        /* Barra horizontal no topo */
+        .top-bar {
+            background-color: #6f42c1;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        /* Botão dentro da barra horizontal */
+        .toggle-btn {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        .toggle-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+        /* Menu vertical fixo */
+        .vertical-nav {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 60px;
+            left: -250px;
+            background-color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-right: 1px solid #e9ecef;
+        }
 
-    <!-- Custom Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+        /* Menu exibido */
+        .vertical-nav.show {
+            left: 0;
+        }
+
+        /* Estilo dos links no menu */
+        .vertical-nav a {
+            color: #6f42c1;
+            padding: 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .vertical-nav a i {
+            margin-right: 10px;
+        }
+
+        .vertical-nav a:hover {
+            background-color: #e9ecef;
+            color: #59359c;
+        }
+
+        .vertical-nav .active {
+            background-color: #6f42c1;
+            color: white;
+        }
+
+        /* Conteúdo principal */
+        .container {
+            transition: margin-left 0.3s ease;
+            padding-top: 80px;
+            padding-left: 20px;
+            padding-right: 20px;
+            max-width: 1000px;
+        }
+
+        h1, p {
+            color: #343a40;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-expand-lg navbar-primary bg-primary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('eventos.index') }}">Eventos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Usuário</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admin</a>
-                    </li>
 
-                    <!-- Novo nav-item com dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Opções
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Configurações</a></li>
-                            <li><a class="dropdown-item" href="#">Ajuda</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Suporte</a></li>
-                        </ul>
-                    </li>
-                </ul>
+<!-- Barra horizontal no topo -->
+<div class="top-bar">
+    <button class="toggle-btn" id="toggleMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    <span style="margin-left: 20px; font-size: 20px; font-weight: 500;">MinhaMarca</span>
+</div>
 
-                <!-- Container para o ícone, alinhado à direita -->
-                <div class="d-flex ms-auto">
-                    <button id="theme-toggle" class="btn btn-outline-light ms-2">
-                        <i class="fa-solid fa-moon"></i> <!-- Ícone de lua para modo escuro -->
-                    </button>
+<!-- Menu de Navegação Vertical -->
+<div class="vertical-nav bg-light" id="sidebarMenu">
+    <a href="#" class="navbar-brand px-3">MinhaMarca</a>
+    <a href="#" class="nav-link active"><i class="fas fa-home"></i> Início</a>
+    <a href="#" class="nav-link"><i class="fas fa-user"></i> Sobre</a>
+    <a href="#" class="nav-link"><i class="fas fa-cogs"></i> Serviços</a>
+    <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Contato</a>
+</div>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+<!-- Conteúdo principal -->
+<div class="container" id="mainContent" style="margin-left: 0px;">
+   <!-- Aqui é onde o conteúdo passado para o componente será exibido -->
+   {{ $slot }}
+</div>
 
-                    <button class="btn btn-outline-light ms-2" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sair
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+    const sidebarMenu = document.getElementById('sidebarMenu');
+    const mainContent = document.getElementById('mainContent');
+    
+    toggleMenuBtn.addEventListener('click', function() {
+        sidebarMenu.classList.toggle('show');
+        if (sidebarMenu.classList.contains('show')) {
+            mainContent.style.marginLeft = '250px';
+        } else {
+            mainContent.style.marginLeft = '0';
+        }
+    });
+</script>
 
-    <div class="content">
-        <!-- Aqui é onde o conteúdo passado para o componente será exibido -->
-        {{ $slot }}
-    </div>
-
-    <footer class="bg-primary text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">© 2024 Eventos. Todos os direitos reservados.</p>
-            <div class="d-flex justify-content-center mt-2">
-                <a href="#" class="text-white me-3">Privacidade</a>
-                <a href="#" class="text-white">Termos de Serviço</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts Bootstrap (corretos) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+vv0z5Y5nN5Djq4vmvtI5QmtZlgz+" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <!-- Custom JS (sem Vite) -->
-    <script src="{{ asset('js/theme.js') }}"></script>
-
-    <!-- Swal Alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-    </script>
 </body>
 </html>

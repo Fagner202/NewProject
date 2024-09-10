@@ -1,3 +1,7 @@
-<x-menu>
-    <h1 class="text-3xl">Ainda não sei o que fazer aqui!</h1>
-</x-menu>
+@extends('menu')
+
+@section('titulo', 'Página Inicial')
+
+@section('conteudo')
+    <p>Este é o conteúdo específico da página inicial.</p>
+@endsection
