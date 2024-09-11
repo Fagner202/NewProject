@@ -1,26 +1,46 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    const themeToggleButton = document.getElementById('theme-toggle');
-    let currentTheme = localStorage.getItem('theme') || 'light';
+const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+const sidebarMenu = document.getElementById('sidebarMenu');
+const mainContent = document.getElementById('mainContent');
+const themeIcon = document.getElementById('themeIcon');
+const body = document.body;
 
-    // Aplica o tema atual ao body
-    document.body.classList.add(`${currentTheme}-mode`);
-    
-    // Altera o ícone conforme o tema atual
-    themeToggleButton.innerHTML = currentTheme === 'light' ? 
-        '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+// Função para verificar e aplicar o tema salvo
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    } else {
+        body.classList.remove('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+}
 
-    // Alternar tema ao clicar no botão
-    themeToggleButton.addEventListener('click', () => {
-        document.body.classList.remove(`${currentTheme}-mode`);
-        
-        // Alterna entre claro e escuro
-        currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        document.body.classList.add(`${currentTheme}-mode`);
-        themeToggleButton.innerHTML = currentTheme === 'light' ? 
-            '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-        
-        // Salva o tema no localStorage
-        localStorage.setItem('theme', currentTheme);
-    });
+// Verifica e aplica o tema salvo quando a página é carregada
+applySavedTheme();
+
+// Toggle do menu
+toggleMenuBtn.addEventListener('click', function() {
+    sidebarMenu.classList.toggle('show');
+    if (sidebarMenu.classList.contains('show')) {
+        mainContent.style.marginLeft = '250px';
+    } else {
+        mainContent.style.marginLeft = '0';
+    }
+});
+
+// Alternância de tema e salvamento no localStorage
+themeIcon.addEventListener('click', function() {
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'dark'); // Salva o tema escuro
+    } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'light'); // Salva o tema claro
+    }
 });

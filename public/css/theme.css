@@ -1,80 +1,161 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 body {
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-/* Cartões */
-.card-theme {
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* Estilo para o modo claro */
-body.light-mode .card-theme {
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid #dee2e6;
-}
-
-/* Estilo para o modo escuro */
-body.dark-mode .card-theme {
-    background-color: #333333;
-    color: #ffffff;
-    border: 1px solid #444444;
-}
-
-/* Adapte as classes do Bootstrap conforme necessário */
-.navbar-light-mode {
+    font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
-    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.navbar-dark-mode {
+/* Barra horizontal no topo */
+.top-bar {
+    background-color: #6f42c1;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Botão de alternância do menu */
+.toggle-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Ícone de tema (Sol e Lua) */
+.theme-toggle {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Menu vertical fixo */
+.vertical-nav {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    background-color: white;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-right: 1px solid #e9ecef;
+}
+
+/* Menu exibido */
+.vertical-nav.show {
+    left: 0;
+}
+
+/* Estilo dos links no menu */
+.vertical-nav a {
+    color: #6f42c1;
+    padding: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 18px;
+}
+
+.vertical-nav a i {
+    margin-right: 10px;
+}
+
+.vertical-nav a:hover {
+    background-color: #e9ecef;
+    color: #59359c;
+}
+
+.vertical-nav .active {
+    background-color: #6f42c1;
+    color: white;
+}
+
+/* Dropdown no link "Serviços" */
+.dropdown-menu {
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.dropdown-menu a {
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    color: #6f42c1;
+}
+
+.dropdown-menu a:hover {
+    background-color: #e9ecef;
+    color: #59359c;
+}
+
+/* Conteúdo principal */
+.container {
+    transition: margin-left 0.3s ease;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1000px;
+}
+
+h1, p {
+    color: #343a40;
+}
+
+/* Tema escuro */
+body.dark {
     background-color: #343a40;
-    color: #ffffff;
 }
 
-.content {
-    flex: 1;
+body.dark h1, body.dark p, body.dark .vertical-nav a {
+    color: #f8f9fa;
 }
 
-/* Modo claro */
-body.light-mode .form-control, 
-body.light-mode .form-select {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #dee2e6;
+body.dark .vertical-nav {
+    background-color: #212529; /* Fundo escuro adequado */
 }
 
-body.light-mode .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+body.dark .vertical-nav a {
+    color: #f8f9fa; /* Cor dos links em branco */
 }
 
-/* Modo escuro */
-body.dark-mode .form-control, 
-body.dark-mode .form-select {
-    background-color: #333333;
-    color: #ffffff;
-    border-color: #444444;
+body.dark .vertical-nav .active {
+    background-color: #6f42c1;
+    color: white;
 }
 
-body.dark-mode .btn-primary {
-    background-color: #0056b3;
-    border-color: #0056b3;
+body.dark .vertical-nav a:hover {
+    background-color: #414a4c;
+    color: #f8f9fa;
+}
+
+/* Dropdown no modo escuro */
+body.dark .dropdown-menu {
+    background-color: #212529;
+}
+
+body.dark .dropdown-menu a {
+    color: #f8f9fa;
+}
+
+body.dark .dropdown-menu a:hover {
+    background-color: #414a4c;
 }
