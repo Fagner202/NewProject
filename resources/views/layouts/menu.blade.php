@@ -63,6 +63,7 @@
 
         <!-- Conteúdo principal -->
         <div class="container" id="mainContent" style="margin-left: 0px;">
+            {{ $slot }}
         </div>
 
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->

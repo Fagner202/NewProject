@@ -14,9 +14,7 @@ class EventoController extends Controller
         // dd(auth()->user());
         // $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
         $eventos = Evento::all();
-        return view('eventos.index', [
-            'events' => $eventos
-        ]);
+        return view('eventos.index', ['events' => $eventos]);
     }
 
     /**
