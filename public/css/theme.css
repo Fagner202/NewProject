@@ -67,6 +67,7 @@ body {
 
 /* Container principal, fixando a posição */
 #mainContent {
+    border: solid 5px pink;
     transition: margin-left 0.3s ease, width 0.3s ease;
     padding-top: 80px;
     padding-left: 20px;
@@ -79,6 +80,8 @@ body {
     margin-right: auto;
     width: 80%; /* Defina o tamanho desejado quando o menu está fechado */
     max-width: 1000px; /* Define a largura máxima para não expandir demais */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
 }
 
 /* Quando o menu está aberto */
