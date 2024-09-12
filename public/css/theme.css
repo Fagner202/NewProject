@@ -1,5 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-style: normal;
     background-color: #f8f9fa;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -51,6 +53,7 @@ body {
     top: 60px;
     left: -250px;
     background-color: white;
+    transition: left 0.3s ease; /* Transição apenas no menu */
     padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -60,6 +63,29 @@ body {
 /* Menu exibido */
 .vertical-nav.show {
     left: 0;
+}
+
+/* Container principal, fixando a posição */
+#mainContent {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Quando o menu está fechado */
+#mainContent.menu-closed {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; /* Defina o tamanho desejado quando o menu está fechado */
+    max-width: 1000px; /* Define a largura máxima para não expandir demais */
+}
+
+/* Quando o menu está aberto */
+#mainContent.menu-open {
+    margin-left: 250px; /* Espaço reservado para o menu */
+    width: calc(100% - 250px); /* Ajusta a largura do conteúdo */
+    max-width: 1000px;
 }
 
 /* Estilo dos links no menu */
@@ -72,6 +98,15 @@ body {
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-size: 18px;
+}
+
+.vertical-nav.show {
+    left: 0; /* Quando o menu está aberto */
+}
+
+/* Quando o menu está escondido */
+.vertical-nav:not(.show) + #mainContent {
+    margin-left: 0;
 }
 
 .vertical-nav a i {

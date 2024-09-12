@@ -4,6 +4,20 @@ const mainContent = document.getElementById('mainContent');
 const themeIcon = document.getElementById('themeIcon');
 const body = document.body;
 
+// Função para ajustar o conteúdo de acordo com o estado do menu
+function initializeMenu() {
+    if (sidebarMenu.classList.contains('show')) {
+        mainContent.classList.add('menu-open');
+        mainContent.classList.remove('menu-closed');
+    } else {
+        mainContent.classList.add('menu-closed');
+        mainContent.classList.remove('menu-open');
+    }
+}
+
+// Chama a função ao carregar a página
+initializeMenu();
+
 // Função para verificar e aplicar o tema salvo
 function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -25,9 +39,13 @@ applySavedTheme();
 toggleMenuBtn.addEventListener('click', function() {
     sidebarMenu.classList.toggle('show');
     if (sidebarMenu.classList.contains('show')) {
-        mainContent.style.marginLeft = '250px';
+        // mainContent.style.marginLeft = '250px';
+        mainContent.classList.remove('menu-closed');
+        mainContent.classList.add('menu-open');
     } else {
-        mainContent.style.marginLeft = '0';
+        // mainContent.style.marginLeft = '0';
+        mainContent.classList.remove('menu-open');
+        mainContent.classList.add('menu-closed');
     }
 });
 

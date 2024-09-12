@@ -13,6 +13,10 @@
 
         <!-- Link do CSS -->
         <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         
     </head>
     <body>
@@ -62,8 +66,58 @@
         </div>
 
         <!-- Conteúdo principal -->
-        <div class="container" id="mainContent" style="margin-left: 0px;">
-            {{ $slot }}
+        <div class="container" id="mainContent">
+            <div class="card w-100 mx-auto">
+                <!-- Cabeçalho do card -->
+                <div class="card-header">
+                    <h2>Dados de Usuários</h2>
+                </div>
+        
+                <!-- Corpo do card com a tabela -->
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Cargo</th>
+                                <th>Data de Criação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>João Silva</td>
+                                <td>joao.silva@email.com</td>
+                                <td>Administrador</td>
+                                <td>2024-09-10</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Maria Souza</td>
+                                <td>maria.souza@email.com</td>
+                                <td>Usuário</td>
+                                <td>2024-09-10</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Pedro Santos</td>
+                                <td>pedro.santos@email.com</td>
+                                <td>Moderador</td>
+                                <td>2024-09-10</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Ana Oliveira</td>
+                                <td>ana.oliveira@email.com</td>
+                                <td>Usuário</td>
+                                <td>2024-09-10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->
