@@ -68,43 +68,8 @@
 
         <!-- Conteúdo principal -->
         <div class="container mx-auto d-flex justify-content-center w-100" id="mainContent">
-            <div class="card w-100">
-                <div class="card-header">
-                    <h3>Título do Card</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Coluna 1</th>
-                                <th>Coluna 2</th>
-                                <th>Coluna 3</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Dados 1</td>
-                                <td>Dados 2</td>
-                                <td>Dados 3</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Dados 1</td>
-                                <td>Dados 2</td>
-                                <td>Dados 3</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Dados 1</td>
-                                <td>Dados 2</td>
-                                <td>Dados 3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <!-- Aqui é onde o conteúdo passado para o componente será exibido -->
+            {{ $slot }}
         </div>
 
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->
