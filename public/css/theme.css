@@ -39,12 +39,6 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Ícone de tema (Sol e Lua) */
-.theme-toggle {
-    font-size: 20px;
-    cursor: pointer;
-}
-
 /* Menu vertical fixo */
 .vertical-nav {
     height: 100vh;
@@ -53,10 +47,9 @@ body {
     top: 60px;
     left: -250px;
     background-color: white;
-    transition: left 0.3s ease; /* Transição apenas no menu */
+    transition: left 0.3s ease;
     padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     border-right: 1px solid #e9ecef;
 }
 
@@ -65,30 +58,9 @@ body {
     left: 0;
 }
 
-/* Container principal, fixando a posição */
+/* Container principal */
 #mainContent {
-    border: solid 5px pink;
-    transition: margin-left 0.3s ease, width 0.3s ease;
-    padding-top: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* Quando o menu está fechado */
-#mainContent.menu-closed {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%; /* Defina o tamanho desejado quando o menu está fechado */
-    max-width: 1000px; /* Define a largura máxima para não expandir demais */
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-}
-
-/* Quando o menu está aberto */
-#mainContent.menu-open {
-    margin-left: 250px; /* Espaço reservado para o menu */
-    width: calc(100% - 250px); /* Ajusta a largura do conteúdo */
-    max-width: 1000px;
+    /* border: solid 5px pink; */
 }
 
 /* Estilo dos links no menu */
@@ -101,15 +73,7 @@ body {
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-size: 18px;
-}
-
-.vertical-nav.show {
-    left: 0; /* Quando o menu está aberto */
-}
-
-/* Quando o menu está escondido */
-.vertical-nav:not(.show) + #mainContent {
-    margin-left: 0;
+    margin-right: 10px !important;
 }
 
 .vertical-nav a i {
@@ -156,44 +120,4 @@ body {
 
 h1, p {
     color: #343a40;
-}
-
-/* Tema escuro */
-body.dark {
-    background-color: #343a40;
-}
-
-body.dark h1, body.dark p, body.dark .vertical-nav a {
-    color: #f8f9fa;
-}
-
-body.dark .vertical-nav {
-    background-color: #212529; /* Fundo escuro adequado */
-}
-
-body.dark .vertical-nav a {
-    color: #f8f9fa; /* Cor dos links em branco */
-}
-
-body.dark .vertical-nav .active {
-    background-color: #6f42c1;
-    color: white;
-}
-
-body.dark .vertical-nav a:hover {
-    background-color: #414a4c;
-    color: #f8f9fa;
-}
-
-/* Dropdown no modo escuro */
-body.dark .dropdown-menu {
-    background-color: #212529;
-}
-
-body.dark .dropdown-menu a {
-    color: #f8f9fa;
-}
-
-body.dark .dropdown-menu a:hover {
-    background-color: #414a4c;
 }

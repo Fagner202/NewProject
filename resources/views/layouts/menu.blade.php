@@ -13,6 +13,7 @@
 
         <!-- Link do CSS -->
         <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/theme-dark.css') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +37,8 @@
         <!-- Menu de Navegação Vertical -->
         <div class="vertical-nav" id="sidebarMenu">
             <a href="#" class="navbar-brand px-3">MinhaMarca</a>
-            <a href="#" class="nav-link active"><i class="fas fa-home"></i> Início</a>
-            <a href="#" class="nav-link"><i class="fas fa-user"></i> Sobre</a>
+            <a href="#" class="nav-link active"><i class="fas fa-home"></i>Início</a>
+            <a href="#" class="nav-link"><i class="fas fa-user"></i>Sobre</a>
             
             <!-- Dropdown para Serviços -->
             <div class="dropdown">
@@ -66,8 +67,44 @@
         </div>
 
         <!-- Conteúdo principal -->
-        <div class="container mx-auto d-flex justify-content-center" id="mainContent">
-            <h2>Conteúdo</h2>
+        <div class="container mx-auto d-flex justify-content-center w-100" id="mainContent">
+            <div class="card w-100">
+                <div class="card-header">
+                    <h3>Título do Card</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Coluna 1</th>
+                                <th>Coluna 2</th>
+                                <th>Coluna 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Dados 1</td>
+                                <td>Dados 2</td>
+                                <td>Dados 3</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Dados 1</td>
+                                <td>Dados 2</td>
+                                <td>Dados 3</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Dados 1</td>
+                                <td>Dados 2</td>
+                                <td>Dados 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->
