@@ -1,2 +1,0 @@
-GPT, quando meu minha página é carregada o meu menu vertical vem fechado, o comportamento que estou procurando é centralizar
-a div 'mainContent' ao body

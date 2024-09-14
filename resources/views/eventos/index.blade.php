@@ -1,92 +1,65 @@
-<x-menu>
-    <div class="card w-100">
-        <div class="card-header">
-            <h3 class="card-title">Eventos</h3>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Data</th>
-                        <th>Localizacão</th>
-                        <th>Vagas</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Dados 1</td>
-                        <td>Dados 2</td>
-                        <td>Dados 3</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Dados 1</td>
-                        <td>Dados 2</td>
-                        <td>Dados 3</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Dados 1</td>
-                        <td>Dados 2</td>
-                        <td>Dados 3</td>
-                    </tr>
-                </tbody>
-            </table>
+<x-menu>  
+    <div class="container mt-4">
+        <div class="row">
+            @foreach($eventos as $index => $evento)
+                <div class="col-md-6 mb-4">
+                    <div class="card w-100">
+                        <div class="card-header text-center">
+                            <h3>{{ $evento->nome }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong>Descrição:</strong> {{ $evento->descricao }}
+                            </p>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Data</th>
+                                        <td>{{ $evento->data }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Hora de Início</th>
+                                        <td>{{ $evento->hora_inicio }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Hora de Fim</th>
+                                        <td>{{ $evento->hora_fim }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Localização</th>
+                                        <td>{{ $evento->localizacao }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vagas</th>
+                                        <td>{{ number_format($evento->vagas, 0, ',', '.') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Status</th>
+                                        <td>{{ $evento->ativo ? 'Ativo' : 'Inativo' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Atualizado em</th>
+                                        <td>{{ $evento->updated_at }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-right">
+                            <form action="{{ route('eventos.destroy', $evento->id) }} "method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                @if(($index + 1) % 2 == 0)
+                    </div><div class="row">
+                @endif
+            @endforeach
         </div>
     </div>
 </x-menu>
-
-{{-- <script>
-    function myFunction(eventId) {
-            Swal.fire({
-            title: 'Tem certeza?',
-            text: "Você não poderá reverter isso!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim, excluir!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`/eventos/${eventId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire(
-                            'Excluído!',
-                            'O evento foi excluído com sucesso.',
-                            'success'
-                        ).then(() => {
-                            location.reload(); // Recarrega a página para refletir a exclusão
-                        });
-                    } else {
-                        Swal.fire(
-                            'Erro!',
-                            'Ocorreu um erro ao tentar excluir o evento.',
-                            'error'
-                        );
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    Swal.fire(
-                        'Erro!',
-                        'Ocorreu um erro ao tentar excluir o evento.',
-                        'error'
-                    );
-                });
-            }
-        });
-
-    }
-</script> --}}

@@ -94,6 +94,7 @@ class EventoController extends Controller
         // dd($id);
         $event = Evento::findOrFail($id);
         $event->delete();
-        return response()->json(['success' => 'Evento excluído com sucesso!']);
+        return redirect()->route('eventos.index');
+        // return response()->json(['success' => 'Evento excluído com sucesso!']);
     }
 }
