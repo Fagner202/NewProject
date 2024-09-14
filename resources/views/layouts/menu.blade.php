@@ -72,6 +72,63 @@
             {{ $slot }}
         </div>
 
+        <!-- Rodapé --> 
+        <!-- Rodapé -->
+<footer class="bg-dark text-white text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <div class="row">
+            <!-- Sobre a Empresa -->
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">MinhaMarca</h5>
+                <p>
+                    Nós fornecemos serviços de consultoria, desenvolvimento e manutenção. Nosso objetivo é oferecer as melhores soluções tecnológicas para nossos clientes.
+                </p>
+            </div>
+
+            <!-- Links Rápidos -->
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#" class="text-white">Início</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('eventos.index') }}" class="text-white">Eventos</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white">Contato</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Redes Sociais -->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Siga-nos</h5>
+                <a href="#" class="btn btn-outline-light btn-floating m-1" role="button">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1" role="button">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1" role="button">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1" role="button">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3 bg-black">
+        © 2024 MinhaMarca. Todos os direitos reservados.
+    </div>
+</footer>
+
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
