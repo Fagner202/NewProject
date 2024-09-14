@@ -1,5 +1,54 @@
 <x-menu>  
     <div class="container mt-4">
+
+        <!-- Formulário de Filtro -->
+        <form action="{{ route('eventos.index') }}" method="GET" class="mb-4 p-3 bg-light rounded shadow-sm">
+            <div class="row g-3">
+                <!-- Filtro por Nome -->
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" name="nome" class="form-control" placeholder="Nome do evento" value="{{ request('nome') }}">
+                    </div>
+                </div>
+        
+                <!-- Filtro por Data -->
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+                        <input type="date" name="data" class="form-control" value="{{ request('data') }}">
+                    </div>
+                </div>
+        
+                <!-- Filtro por Localização -->
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <input type="text" name="localizacao" class="form-control" placeholder="Localização" value="{{ request('localizacao') }}">
+                    </div>
+                </div>
+        
+                <!-- Botões de Pesquisa e Limpar -->
+                <div class="col-md-12 text-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Pesquisar
+                    </button>
+                    <a href="{{ route('eventos.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Limpar Filtros
+                    </a>
+                </div>
+            </div>
+        </form>
+        
+
+        <!-- Lista de Eventos -->
+
         <div class="row">
             @foreach($eventos as $index => $evento)
                 <div class="col-md-6 mb-4">

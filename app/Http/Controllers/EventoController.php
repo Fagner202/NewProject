@@ -9,12 +9,29 @@ class EventoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // dd(auth()->user());
-        // $eventos = Evento::getEventosPorUsuario(auth()->user()->id);
-        $eventos = Evento::all();
-        // dd($eventos);
+        // $eventos = Evento::all();
+        $query = Evento::query();
+
+
+        // Verificar se há filtro por nome
+        if (request()->has('nome') && $request->nome != '') {
+            $query->where('nome', 'like', '%' . $request->nome . '%');
+        }
+
+        // Verificar se há filtro por data
+        if (request()->has('data') && $request->data != '') {
+            $query->where('data', 'like', '%' . $request->data . '%');
+        }
+
+        // Verificar se há filtro por localizacao
+        if (request()->has('localizacao') && $request->localizacao != '') {
+            $query->where('localizacao', 'like', '%' . $request->localizacao . '%');
+            // dd($request->localizacao);
+        }
+
+        $eventos = $query->get();
         return view('eventos.index', ['eventos' => $eventos]);
     }
 
