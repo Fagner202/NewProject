@@ -2,8 +2,8 @@
     <div class="container mt-4">
 
         <!-- Formulário de Filtro -->
-        <form action="{{ route('eventos.index') }}" method="GET" class="mb-4 p-3 bg-light rounded shadow-sm">
-            <div class="row g-3">
+        <form action="{{ route('eventos.index') }}" method="GET" class="mb-4 p-3 bg-light rounded">
+            <div class="row g-3 border border-muted">
                 <!-- Filtro por Nome -->
                 <div class="col-md-4">
                     <div class="input-group">
