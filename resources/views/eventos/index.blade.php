@@ -1,9 +1,9 @@
-<x-menu>  
+<x-menu>
     <div class="container mt-4">
 
         <!-- Formulário de Filtro -->
-        <form action="{{ route('eventos.index') }}" method="GET" class="mb-4 p-3 bg-light rounded">
-            <div class="row g-3 border border-muted">
+        <form action="{{ route('eventos.index') }}" method="GET" class="mb-4 p-3 bg-light rounded" style="border: 1px solid #424242; padding: 20px;">
+            <div class="row g-3" style="padding: 15px; margin-top: 1px;">
                 <!-- Filtro por Nome -->
                 <div class="col-md-4">
                     <div class="input-group">
@@ -46,6 +46,13 @@
             </div>
         </form>
         
+        <!-- Botão para adicionar mais eventos -->
+
+        <div class="text-end mb-4">
+            <a href="{{ route('eventos.create') }}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Adicionar Evento
+            </a>
+        </div>
 
         <!-- Lista de Eventos -->
 
@@ -94,7 +101,10 @@
                             </table>
                         </div>
                         <div class="card-footer text-right">
-                            <form action="{{ route('eventos.destroy', $evento->id) }} "method="POST">
+                            <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">
