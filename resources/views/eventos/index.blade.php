@@ -124,6 +124,6 @@
         </div>
 
         <!-- Paginador -->
-        <x-paginador :paginator="$eventos" />
+        <x-paginador :eventos="$eventos" />
     </div>
 </x-menu>
