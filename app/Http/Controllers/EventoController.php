@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Evento;
+use Illuminate\Support\Facades\DB;
 class EventoController extends Controller
 {
     /**
@@ -113,5 +114,27 @@ class EventoController extends Controller
         $event->delete();
         return redirect()->route('eventos.index');
         // return response()->json(['success' => 'Evento excluído com sucesso!']);
+    }
+
+    public function vincular(string $id)
+    {
+        // dd($id);
+        $event = Evento::findOrFail($id);
+        // dd($event);
+
+        // obter o ID do usuário logado
+        $userId = auth()->user()->id;
+        // dd($userId);
+
+        // Inserir o registro na tabela evento_usuario
+        DB::table('evento_usuario')->insert([
+            'usuario_id' => $userId,
+            'evento_id' => $id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return redirect()->route('eventos.index')
+        ->with('success', 'Você foi vinculado ao evento com sucesso');
     }
 }

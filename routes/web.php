@@ -31,12 +31,7 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::put('/eventos/{id}', [EventoController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
 
-    // Route::post('/ajax/request-handler', [AjaxController::class, 'handle'])->name('ajax.handler');
-    // Route::post('/ajax/request', [AjaxController::class, 'deleteEvento'])->name('ajax.request');
-    // Route::post('/ajax/request', function () {
-    //     // dd(request()->all());
-    //     return response()->json(request()->all());
-    // })->name('ajax.request');
+    Route::post('/eventos/{id}/vincular', [EventoController::class, 'vincular'])->name('eventos.vincular');
 });
 
 

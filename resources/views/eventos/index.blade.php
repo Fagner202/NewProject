@@ -102,6 +102,18 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <style>
+                            div.card-footer a {
+                                /* border: solid 5px pink; */
+                                margin-right: 10px
+                            }
+
+                            div.card-footer button {
+                                /* border: solid 5px pink; */
+                                margin-right: 10px
+                            }
+                        </style>
                         <div class="card-footer text-right">
                             <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-warning" style="margin-right: 10px">
                                 <i class="fas fa-edit"></i> Editar
@@ -111,6 +123,12 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-trash"></i> Excluir
+                                </button>
+                            </form>
+                            <form action="{{ route('eventos.vincular', $evento->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-link"></i> Vincular ao Evento
                                 </button>
                             </form>
                         </div>
