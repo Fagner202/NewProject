@@ -120,5 +120,8 @@
                 @endif
             @endforeach
         </div>
+
+        <!-- Paginador -->
+        <x-paginador :paginator="$eventos" />
     </div>
 </x-menu>

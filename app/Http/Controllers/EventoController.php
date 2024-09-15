@@ -11,27 +11,27 @@ class EventoController extends Controller
      */
     public function index(Request $request)
     {
-        // $eventos = Evento::all();
         $query = Evento::query();
 
-
         // Verificar se há filtro por nome
-        if (request()->has('nome') && $request->nome != '') {
+        if ($request->has('nome') && $request->nome != '') {
             $query->where('nome', 'like', '%' . $request->nome . '%');
         }
 
         // Verificar se há filtro por data
-        if (request()->has('data') && $request->data != '') {
+        if ($request->has('data') && $request->data != '') {
             $query->where('data', 'like', '%' . $request->data . '%');
         }
 
         // Verificar se há filtro por localizacao
-        if (request()->has('localizacao') && $request->localizacao != '') {
+        if ($request->has('localizacao') && $request->localizacao != '') {
             $query->where('localizacao', 'like', '%' . $request->localizacao . '%');
-            // dd($request->localizacao);
         }
 
-        $eventos = $query->get();
+        // Paginação dos resultados
+        $eventos = $query->paginate(10); // Exibir 10 resultados por página
+        // dd($eventos->elements());
+
         return view('eventos.index', ['eventos' => $eventos]);
     }
 
