@@ -60,7 +60,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="eventsDropdown">
                     <a href="{{ route('eventos.index') }}">Todos os eventos</a>
-                    <a href="#">Meus eventos</a>
+                    <a href="{{ route('eventos.meus') }}">Meus eventos</a>
                 </div>
             </div>
 

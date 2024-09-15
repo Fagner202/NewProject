@@ -137,4 +137,19 @@ class EventoController extends Controller
         return redirect()->route('eventos.index')
         ->with('success', 'Você foi vinculado ao evento com sucesso');
     }
+
+    public function meusEventosVinculados()
+    {
+        $userId = auth()->user()->id;
+
+        // Buscar os eventos vinculados ao usuário
+        $eventos = DB::table('eventos')
+            ->join('evento_usuario', 'eventos.id', '=', 'evento_usuario.evento_id')
+            ->where('evento_usuario.usuario_id', $userId)
+            ->select('eventos.*')
+            ->get();
+        // dd($eventos);
+
+        return view('eventos.meus', ['eventos' => $eventos]);
+    }
 }

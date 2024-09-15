@@ -30,8 +30,9 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::get('/eventos/{id}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
     Route::put('/eventos/{id}', [EventoController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
-
     Route::post('/eventos/{id}/vincular', [EventoController::class, 'vincular'])->name('eventos.vincular');
+    
+    Route::get('/meus-eventos', [EventoController::class, 'meusEventosVinculados'])->name('eventos.meus');
 });
 
 
