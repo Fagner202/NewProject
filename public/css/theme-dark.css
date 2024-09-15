@@ -128,3 +128,9 @@ body.dark ::placeholder {
     color: #f8f9fa; /* Cor do placeholder */
     opacity: 1; /* Opacidade do placeholder */
 }
+
+body.dark select {
+    background-color: #2c2f33; /* Cor de fundo do select */
+    color: #f8f9fa; /* Cor do texto do select */
+    border-color: #444; /* Cor da borda do select */
+}

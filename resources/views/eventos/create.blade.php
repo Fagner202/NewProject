@@ -1,8 +1,23 @@
 <x-menu>
+
+    <style>
+       body.dark form {
+           background-color: #343A40 !important;
+       }
+
+        body.dark .card-theme {
+            background-color: #343A40 !important;
+        }
+
+        body.dark .card-theme div {
+            background: #343A40 !important;
+        }
+    </style>
+
     <div class="container mt-4 mb-5"> <!-- Adicionei margem no final para afastar do footer -->
         <div class="row justify-content-center">
             <div class="col-lg-12 col-md-10"> <!-- Aumentei a largura ocupada no desktop -->
-                <div class="card shadow-sm card-theme"> <!-- Adicionada classe card-theme para alternar cores -->
+                <div class="card shadow-sm card-theme form-controle"> <!-- Adicionada classe card-theme para alternar cores -->
                     <div class="card-header">
                         <h5>Criar Novo Evento</h5>
                     </div>

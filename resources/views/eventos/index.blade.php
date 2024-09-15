@@ -35,24 +35,26 @@
                 </div>
         
                 <!-- Botões de Pesquisa e Limpar -->
-                <div class="col-md-12 text-end">
-                    <button type="submit" class="btn btn-primary">
+                <div class="col-md-4" style="">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
                         <i class="fas fa-search"></i> Pesquisar
                     </button>
-                    <a href="{{ route('eventos.index') }}" class="btn btn-secondary">
+                </div>
+
+                <div class="col-md-4" style="">
+                    <a href="{{ route('eventos.index') }}" class="btn btn-secondary" style="width: 100%;">
                         <i class="fas fa-times"></i> Limpar Filtros
+                    </a>
+                </div>
+
+                <!-- Botão para adicionar mais eventos -->
+                <div class="col-md-4" style="">
+                    <a href="{{ route('eventos.create') }}" class="btn btn-success" style="width: 100%;">
+                        <i class="fas fa-plus"></i> Adicionar Evento
                     </a>
                 </div>
             </div>
         </form>
-        
-        <!-- Botão para adicionar mais eventos -->
-
-        <div class="text-end mb-4">
-            <a href="{{ route('eventos.create') }}" class="btn btn-success">
-                <i class="fas fa-plus"></i> Adicionar Evento
-            </a>
-        </div>
 
         <!-- Lista de Eventos -->
 
@@ -101,7 +103,7 @@
                             </table>
                         </div>
                         <div class="card-footer text-right">
-                            <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-warning">
+                            <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-warning" style="margin-right: 10px">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
                             <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST" class="d-inline">

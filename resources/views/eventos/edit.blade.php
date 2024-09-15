@@ -1,4 +1,19 @@
 <x-menu>
+
+    <style>
+        body.dark form {
+            background-color: #343A40 !important;
+        }
+ 
+         body.dark .card-theme {
+            background-color: #343A40 !important;
+        }
+ 
+         body.dark .card-theme div {
+            background: #343A40 !important;
+        }
+    </style>
+
     <div class="container mt-4 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-12 col-md-10">
