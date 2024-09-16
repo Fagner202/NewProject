@@ -39,7 +39,7 @@
         <div class="vertical-nav" id="sidebarMenu">
             <a href="#" class="navbar-brand px-3">MinhaMarca</a>
             <a href="#" class="nav-link active"><i class="fas fa-home"></i>Início</a>
-            <a href="#" class="nav-link"><i class="fas fa-user"></i>Sobre</a>
+            <a href="{{ route('users.index') }}" class="nav-link"><i class="fas fa-user"></i>Usuários</a>
             
             <!-- Dropdown para Serviços -->
             <div class="dropdown">
