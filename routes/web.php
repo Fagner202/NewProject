@@ -33,6 +33,7 @@ Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {
     Route::post('/eventos/{id}/vincular', [EventoController::class, 'vincular'])->name('eventos.vincular');
     
     Route::get('/meus-eventos', [EventoController::class, 'meusEventosVinculados'])->name('eventos.meus');
+    Route::delete('/eventos/{id}/desvincular', [EventoController::class, 'desvincular'])->name('eventos.desvincular');
 });
 
 

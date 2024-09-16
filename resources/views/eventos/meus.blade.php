@@ -115,6 +115,16 @@
                             }
                         </style>
                         <div class="card-footer text-right">
+                            {{-- Botão para desvincular do evento --}}
+                            <form action="{{ route('eventos.desvincular', $evento->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE') <!-- DELETE é o método apropriado para "remover" ou desvincular -->
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-unlink"></i> Desvincular do Evento
+                                </button>
+                            </form>
+
+
                             {{-- <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-warning" style="margin-right: 10px">
                                 <i class="fas fa-edit"></i> Editar
                             </a>

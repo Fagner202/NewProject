@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Evento;
+use App\Models\EventoUsuario;
+// use App\Models\;
 use Illuminate\Support\Facades\DB;
 class EventoController extends Controller
 {
@@ -151,5 +153,22 @@ class EventoController extends Controller
         // dd($eventos);
 
         return view('eventos.meus', ['eventos' => $eventos]);
+    }
+
+    public function desvincular(string $id)
+    {
+        // dd($id);
+        $userId = auth()->id();
+
+        // Encontra o registro na tabela evento_usuario
+        $vinculo = EventoUsuario::where('usuario_id', $userId)
+                                ->where('evento_id', $id)
+                                ->firstOrFail();
+
+        // Realiza o soft delete (marca como "excluído")
+        $vinculo->delete();
+
+        return redirect()->route('eventos.meus')
+                        ->with('success', 'Você foi desvinculado do evento com sucesso.');
     }
 }
