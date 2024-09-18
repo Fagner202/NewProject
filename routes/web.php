@@ -15,10 +15,14 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{user}/destroy', [UserController::class, 'destroy'])->name('users.destroy')->middleware(CheckIfsAdmin::class);
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 });
 
 Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {

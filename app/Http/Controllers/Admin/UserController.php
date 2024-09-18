@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function edit(string $id)
     {
-        // dd($id);
+        dd($id);
         // $user = User::where('id', '=', $id)->first();
         // $user = User::where('id', $id)->first(); // firstOrFail()
         if (!$user = User::find($id)) {
