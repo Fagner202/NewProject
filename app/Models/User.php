@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role; // Certifique-se de que o model foi importado
 
 class User extends Authenticatable
 {
@@ -55,5 +56,10 @@ class User extends Authenticatable
     public function eventos()
     {
         return $this->belongsToMany(Evento::class, 'evento_usuario');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user'); // Defina a relação muitos-para-muitos
     }
 }

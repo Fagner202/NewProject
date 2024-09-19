@@ -16,6 +16,20 @@
             <x-input-error :messages="$errors->get('email')" class="invalid-feedback" />
         </div>
 
+          <!-- Role Selection -->
+        <div class="mb-3">
+            <x-input-label for="role" :value="__('Role')" />
+            <select id="role" name="role" class="form-control" required>
+                <option value="" disabled selected>{{ __('Select a role') }}</option>
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>
+                        {{ $role->name }}
+                    </option>
+                @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('role')" class="invalid-feedback" />
+        </div>
+
         <!-- Password -->
         <div class="mb-3">
             <x-input-label for="password" :value="__('Password')" />
