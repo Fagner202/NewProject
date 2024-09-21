@@ -153,7 +153,15 @@
         <!-- Scripts do Bootstrap 5.3.3 e JavaScript para controlar o menu e tema -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Sweet Alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <!-- Script para controlar o tema e o menu -->
         <script src="{{ asset('js/theme.js') }}"></script>
+
+        <script>
+            // Testando o Sweet Alert
+            // Swal.fire('Teste de Sweet Alert', 'Mensagem de teste', 'success');
+        </script>
     </body>
 </html>

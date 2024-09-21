@@ -30,10 +30,10 @@
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="button" class="btn btn-danger btn-sm delete-button" data-id="{{ $user->id }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
@@ -50,3 +50,26 @@
         </div>
     </div>
 </x-menu>
+
+<script>
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', function (event) {
+            var userId = event.target.getAttribute('data-id');
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Essa ação não pode ser desfeita!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submeter o formulário de exclusão
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            });
+        });
+    });
+</script>
