@@ -60,6 +60,12 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_user'); // Defina a relação muitos-para-muitos
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id'); // Defina a relação muitos-para-muitos
+    }
+
+    // Verificar se o usuário é um admin
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
     }
 }

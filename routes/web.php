@@ -18,11 +18,11 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::delete('/users/{user}/destroy', [UserController::class, 'destroy'])->name('users.destroy')->middleware(CheckIfsAdmin::class);
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{user}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::middleware(([AuthenticatedMiddleware::class]))->group(function () {

@@ -1,6 +1,6 @@
 <x-menu>
     <div class="container mt-4">
-        <h2>Lista de Usuários</h2>
+        {{-- <h2>Lista de Usuários</h2> --}}
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -15,29 +15,33 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->nome }}</td>
+                        <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            @if($user->is_admin)
+                            @if($user->isAdmin())
                                 <span class="badge bg-success">Admin</span>
                             @else
                                 <span class="badge bg-secondary">Usuário</span>
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i> Editar
-                            </a>
-                            {{-- <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Excluir
-                                </button>
-                            </form> --}}
+                            @if(auth()->user()->isAdmin() || auth()->user()->id == $user->id)
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     
