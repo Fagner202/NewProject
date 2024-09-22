@@ -1,6 +1,12 @@
 <x-menu>
     <div class="container mt-4">
-        {{-- <h2>Lista de Usuários</h2> --}}
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            {{-- <h2>Lista de Usuários</h2> --}}
+            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Adicionar Usuário
+            </a>
+        </div>
+    
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -29,7 +35,7 @@
                                 <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-
+    
                                 <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -41,7 +47,6 @@
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
     

@@ -5,66 +5,73 @@
             <div class="col-lg-12 col-md-10">
                 <div class="card shadow-sm card-theme form-controle">
                     <div class="card-header">
-                        <h5>Criar Novo Evento</h5>
+                        <h5>Editando {{ $user->name }}</h5>
                     </div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.users.update', $user->id) }}" class="needs-validation" novalidate>
+                        <form method="POST" action="{{ route('admin.users.store') }}" class="needs-validation" novalidate>
                             @csrf
-                            @method('PUT')
-                    
+                        
                             <!-- Name -->
                             <div class="mb-3">
-                                <x-input-label for="name" :value="__('Name')" />
-                                <x-text-input id="name" class="form-control" type="text" name="name" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-                                <x-input-error :messages="$errors->get('name')" class="invalid-feedback" />
+                                <label for="name" class="form-label">Nome</label>
+                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                    
+                        
                             <!-- Email Address -->
                             <div class="mb-3">
-                                <x-input-label for="email" :value="__('Email')" />
-                                <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email', $user->email)" required autocomplete="username" />
-                                <x-input-error :messages="$errors->get('email')" class="invalid-feedback" />
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                    
+                        
                             <!-- Role Selection -->
                             <div class="mb-3">
-                                <x-input-label for="role" :value="__('Role')" />
+                                <label for="role" class="form-label">Role</label>
                                 <select id="role" name="role" class="form-control" required>
-                                    {{-- <option value="" disabled>{{ __('Select a role') }}</option> --}}
+                                    <option value="" disabled selected>Selecione um role</option>
                                     @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ (old('role') == $role->id || (isset($user) && $user->roles->first() && $user->roles->first()->id == $role->id)) ? 'selected' : '' }}>
-                                        {{ $role->name }}
-                                    </option>
-                                    
+                                        <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('role')" class="invalid-feedback" />
+                                @error('role')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                    
-                            <!-- Password (Optional) -->
+                        
+                            <!-- Password -->
                             <div class="mb-3">
-                                <x-input-label for="password" :value="__('Password')" />
-                                <x-text-input id="password" class="form-control" type="password" name="password" autocomplete="new-password" />
-                                <x-input-error :messages="$errors->get('password')" class="invalid-feedback" />
-                                <small class="form-text text-muted">Deixe em branco se não quiser alterar a senha.</small>
+                                <label for="password" class="form-label">Senha</label>
+                                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                    
-                            <!-- Confirm Password (Optional) -->
+                        
+                            <!-- Confirm Password -->
                             <div class="mb-3">
-                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                                <x-text-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" autocomplete="new-password" />
-                                <x-input-error :messages="$errors->get('password_confirmation')" class="invalid-feedback" />
+                                <label for="password_confirmation" class="form-label">Confirme a Senha</label>
+                                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                @error('password_confirmation')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                    
+                        
                             <div class="d-flex justify-content-between align-items-center mt-4">
                                 <a class="text-decoration-none text-sm text-muted" href="{{ route('users.index') }}">
-                                    {{ __('Voltar') }}
+                                    Voltar
                                 </a>
-                    
-                                <x-primary-button class="btn btn-primary">
-                                    {{ __('Salvar Alterações') }}
-                                </x-primary-button>
+                        
+                                <button type="submit" class="btn btn-primary">
+                                    Criar Usuário
+                                </button>
                             </div>
                         </form>
                     </div>
