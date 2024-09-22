@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class UserController extends Controller
 
     public function edit(string $id)
     {
-        dd($id);
+        // dd($id);
         // $user = User::where('id', '=', $id)->first();
         // $user = User::where('id', $id)->first(); // firstOrFail()
         if (!$user = User::find($id)) {
@@ -54,30 +55,37 @@ class UserController extends Controller
             ->route('users.index')
             ->with('message', 'Usuário não encontrado');
         }
-        return view('admin.users.edit', compact('user'));
+
+        $roles = Role::all(); // Buscar todos os papéis (roles) disponíveis para popular o dropdown
+        // dd($roles);
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(UpdateUserRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        if (!$user = User::find($id)) {
-            return back()->with('message', 'Usuário não encontrado');
-        }
-
-        $data = $request->only('name', 'email');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role' => 'required|exists:roles,id',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+    
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+    
         if ($request->password) {
-            $data['password'] = bcrypt($request->password);
+            $user->password = bcrypt($request->password);
         }
-        // dd($data);
-        $user->update($data);
-
-        // $user->update([$request->only([
-        //     'name',
-        //     'email'
-        // ])]);
-
+    
+        $user->roles()->sync($request->role); // Atualiza o papel do usuário
+    
+        $user->save();
+    
         return redirect()
-        ->route('users.index')
-        ->with('success', 'Usuário criado com sucesso');
+            ->route('users.index')
+            ->with('message', 'Usuário atualizado com sucesso');
     }
 
     public function show(string $id)
