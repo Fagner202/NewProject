@@ -159,3 +159,7 @@ body.dark .container .hero {
 body.dark .hero h1, body.dark .hero p {
     color: #f8f9fa;
 }
+
+body.dark .technologies {
+    background-color: #343A40 !important;
+}
