@@ -143,3 +143,19 @@ body.dark select {
 body.dark text-decoration-none text-sm text-muted {
     color: #f8f9fa !important;
 }
+
+body.dark .container .mt-4 {
+    background-color: #343A40;
+    color: #f8f9fa;
+}
+
+/* Estilizando o section com classe "hero" */
+body.dark .container .hero {
+    background-color: #343A40 !important;
+    color: #f8f9fa;
+}
+
+/* Estilizando o texto dentro de .hero */
+body.dark .hero h1, body.dark .hero p {
+    color: #f8f9fa;
+}
