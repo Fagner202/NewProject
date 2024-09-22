@@ -15,7 +15,7 @@
                             <!-- Name -->
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nome</label>
-                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
+                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" />
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -24,7 +24,7 @@
                             <!-- Email Address -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
+                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email', $user->email) }}" required autocomplete="username" />
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -36,7 +36,7 @@
                                 <select id="role" name="role" class="form-control" required>
                                     <option value="" disabled selected>Selecione um role</option>
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>
+                                        <option value="{{ $role->id }}" {{ old('role', $user->roles->first()->id) == $role->id ? 'selected' : '' }}>
                                             {{ $role->name }}
                                         </option>
                                     @endforeach
@@ -65,12 +65,12 @@
                             </div>
                         
                             <div class="d-flex justify-content-between align-items-center mt-4">
-                                <a class="text-decoration-none text-sm text-muted" href="{{ route('users.index') }}">
+                                <a class="text-decoration-none text-sm" href="{{ route('users.index') }}">
                                     Voltar
                                 </a>
                         
                                 <button type="submit" class="btn btn-primary">
-                                    Criar Usuário
+                                    Atualizar Usuário
                                 </button>
                             </div>
                         </form>

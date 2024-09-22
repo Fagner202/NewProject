@@ -58,20 +58,8 @@
         <!-- Menu de Navegação Vertical -->
         <div class="vertical-nav" id="sidebarMenu">
             <a href="#" class="navbar-brand px-3">MinhaMarca</a>
-            <a href="#" class="nav-link active"><i class="fas fa-home"></i>Início</a>
+            <a href="{{ route('dashboard') }}" class="nav-link active"><i class="fas fa-home"></i>Início</a>
             <a href="{{ route('users.index') }}" class="nav-link"><i class="fas fa-user"></i>Usuários</a>
-            
-            <!-- Dropdown para Serviços -->
-            <div class="dropdown">
-                <a href="#" class="nav-link dropdown-toggle" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-cogs"></i> Serviços
-                </a>
-                <div class="dropdown-menu" aria-labelledby="servicesDropdown">
-                    <a href="#">Consultoria</a>
-                    <a href="#">Desenvolvimento</a>
-                    <a href="#">Manutenção</a>
-                </div>
-            </div>
 
             <!-- Dropdown para Eventos -->
             <div class="dropdown">
@@ -84,7 +72,15 @@
                 </div>
             </div>
 
-            <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Contato</a>
+            {{-- <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Contato</a> --}}
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            
+            <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
         </div>
 
         <!-- Conteúdo principal -->

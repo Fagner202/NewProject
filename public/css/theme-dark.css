@@ -46,6 +46,11 @@ body.dark .card {
     border-color: #444;
 }
 
+body.dark .card-body {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
 body.dark .card-header {
     background-color: #212529;
     color: #f8f9fa;
@@ -133,4 +138,8 @@ body.dark select {
     background-color: #2c2f33; /* Cor de fundo do select */
     color: #f8f9fa; /* Cor do texto do select */
     border-color: #444; /* Cor da borda do select */
+}
+
+body.dark text-decoration-none text-sm text-muted {
+    color: #f8f9fa !important;
 }

@@ -48,15 +48,14 @@ class UserController extends Controller
 
     public function edit(string $id)
     {
-        // dd($id);
-        // $user = User::where('id', '=', $id)->first();
-        // $user = User::where('id', $id)->first(); // firstOrFail()
         if (!$user = User::find($id)) {
             // dd('Entando dentro da condição');
             return redirect()
             ->route('users.index')
             ->with('message', 'Usuário não encontrado');
         }
+
+        // dd($user);
 
         $roles = Role::all(); // Buscar todos os papéis (roles) disponíveis para popular o dropdown
         // dd($roles);
